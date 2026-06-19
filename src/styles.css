@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+.po-menu-header-container-logo{
+    display: flex;
+    justify-content: center;
+}
+.po-table-subtitle-footer-container {
+    max-height: 30px;
+    display: none;
+}
+.po-modal-lg {
+    width: 65%;
+}
+    .po-page-content {
+    max-height: 96% !important;;
+    }
+    .po-modal-md {
+    width: 70%;
+}

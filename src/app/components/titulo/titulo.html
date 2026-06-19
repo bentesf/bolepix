@@ -1,0 +1,63 @@
+<div class="po-row">
+    <po-datepicker 
+        class="po-md-2"
+        name="dataInicio"
+        p-label="Início"
+        [(ngModel)]="dataInicio"
+        (p-change)="onDataInicioChange($event)">
+    </po-datepicker>
+
+    <po-datepicker class="po-md-2"
+        name="dataFim3"
+        p-label="Fim"
+        [(ngModel)]="dataFim3"
+        (p-change)="onDataFimChange($event)">
+    </po-datepicker>
+     <po-input
+        class="po-md-4"
+        name="docSerie"
+        [(ngModel)]="docSerie"
+        p-label="Documento + Série"
+        p-placeholder="Digite os 12 números"
+        p-mask="999999999999">
+    </po-input>
+    <po-button
+        class="po-md-2 buscar"
+        p-label="Buscar"
+        p-kind="primary"
+        (p-click)="atualizarTitulo()">
+    </po-button>
+</div>
+
+
+
+<hr>
+<!-- <div class="botoes"> -->
+<po-button
+    class="refresh"
+    p-label="Atualizar"
+    p-kind="secondary"
+    (p-click)="onBuscarDoc()"
+    >
+</po-button>
+<po-button
+    class="refresh"
+    p-label="Trasmitir"
+    p-kind="secondary"
+    (p-click)="geraBorde()"
+    >
+</po-button>
+<!-- </div> -->
+<div class="container">
+    <po-table
+    [p-columns]="columns"
+    [p-items]="titulos"
+    p-striped="true"
+    p-sort="true"
+    [p-selectable]="true"
+    [p-hide-columns-manager]="true"
+    [p-hide-table-search]="false"
+    [p-loading]="loading"
+    >
+    </po-table>
+</div>

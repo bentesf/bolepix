@@ -1,0 +1,18 @@
+/* Menu Principal */
+/* po-menu {
+    --color: #009bf5;
+    --background-color: #2C3739;
+    --color-menu-color-menu-item-text: #B4E2FD;
+} */
+
+/* Título da Barra da Esquerda */
+.po-font-title {
+    color: #029302;
+    font-size: 50px;
+    font-weight: 700 !important;
+}
+.po-modal-md {
+    width: 70%;
+}
+
+

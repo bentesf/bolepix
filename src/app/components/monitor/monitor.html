@@ -1,0 +1,141 @@
+<div class="po-row">
+    <po-datepicker 
+        class="po-md-2"
+        name="dataInicio"
+        p-label="Início"
+        [(ngModel)]="dataInicio"
+        (p-change)="onDataInicioChange($event)">
+    </po-datepicker>
+
+    <po-datepicker class="po-md-2"
+        name="dataFim2"
+        p-label="Fim"
+        [(ngModel)]="dataFim2"
+        (p-change)="onDataFimChange($event)">
+    </po-datepicker>
+    <po-input
+        class="po-md-4"
+        name="docSerie"
+        [(ngModel)]="docSerie"
+        p-label="Documento + Série"
+        p-placeholder="Digite os 12 números"
+        p-mask="999999999999">
+    </po-input>
+    <po-button
+        class="po-md-2 buscar"
+        p-label="Buscar"
+        p-kind="primary"
+        (p-click)="atualizarPedidos()">
+    </po-button>
+</div>
+
+<div class="indicadores-container">
+  <div class="indicador">
+    <span class="indicador-valor">{{ total }}</span>
+    <span class="indicador-label">Total de Boletos</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-valor">{{ registrar }}</span>
+    <span class="indicador-label">A Transmitir</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-valor">{{ erros }}</span>
+    <span class="indicador-label">Retorno com Erro</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-valor">{{ email }}</span>
+    <span class="indicador-label">Falha no Email</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-valor">{{ cancela }}</span>
+    <span class="indicador-label">Cancelamento</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-valor">{{ altera }}</span>
+    <span class="indicador-label">Alteração</span>
+  </div>
+</div>
+
+<hr>
+<!-- <div class="botoes"> -->
+<po-button
+    class="refresh"
+    p-label="Atualizar"
+    p-kind="secondary"
+    (p-click)="atualizarPedidos()"
+    p-icon="po-icon-refresh">
+</po-button>
+
+<div class="container">
+    <po-table
+    [p-columns]="columns"
+    [p-items]="titulos"
+    p-striped="true"
+    p-sort="true"
+    [p-selectable]="false"
+    [p-hide-columns-manager]="true"
+    [p-hide-table-search]="false"
+    [p-loading]="loading"
+    (p-show-more)="onShowMore2()"
+    [p-show-more-disabled]="!hasNext"
+    >
+    </po-table>
+</div>
+
+<po-modal
+  #detalhesModal
+  p-title="Detalhes do Título"
+  p-size="lg"
+  >
+    <div class="modal-content-wrapper">
+        <div *ngIf="detalhesModalLoading" class="po-row po-p-5">
+            <po-loading-overlay p-text="Carregando detalhes..."></po-loading-overlay>
+        </div>
+
+        <div *ngIf="!detalhesModalLoading && detalhesTitulo[0] as item">
+            <div class="po-row po-mb-2">
+                <po-button
+                    *ngIf="selectedOperacao !== 'Cancelamento' && item.saldo > 0"
+                    class="po-md-4"
+                    p-label="Cancelar Boleto"
+                    p-kind="danger"
+                    p-icon="po-icon-close"
+                    (p-click)="cancelarBoleto()">
+                </po-button>
+                <!-- <po-button
+                    class="po-md-4"
+                    p-label="Sol. Alteracão Valor"
+                    p-kind="danger"
+                    p-icon="po-icon-close"
+                    (p-click)="cancelarBoleto()">
+                </po-button> -->
+            </div>
+
+            <div class="po-row">
+                <po-info class="po-md-3" p-label="Cod.Cliente" [p-value]="item.codcli"></po-info>
+                <po-info class="po-md-3" p-label="Nome Cliente" [p-value]="item.nome"></po-info>
+            </div>
+            <div class="po-row">
+                <po-info class="po-md-3" p-label="Título" [p-value]="item.numtit"></po-info>
+                <po-info class="po-md-3" p-label="Prefixo" [p-value]="item.prefixo"></po-info>
+                <po-info class="po-md-3" p-label="Parcela" [p-value]="item.parcela"></po-info>
+            </div>
+            <div class="po-row">
+                <po-info class="po-md-3" p-label="Emissão" [p-value]="item.emissao"></po-info>
+                <po-info class="po-md-3" p-label="Vencimento" [p-value]="item.dtvenc"></po-info>
+                <po-info class="po-md-3" p-label="Data Baixa" [p-value]="item.dtbaixa || 'N/A'"></po-info>
+            </div>
+            <div class="po-row">
+                <po-info class="po-md-3" p-label="Valor Real" [p-value]="(item.vlreal | currency:'BRL')!"></po-info>
+                <po-info class="po-md-3" p-label="Valor Baixa" [p-value]="(item.vlbaixa | currency:'BRL')!"></po-info>
+                <po-info class="po-md-3" p-label="Saldo" [p-value]="(item.saldo | currency:'BRL')!"></po-info>
+            </div>
+            <hr>
+            <po-info p-label="Descrição" [p-value]="item.desc"></po-info>
+        </div>
+    <div *ngIf="!detalhesModalLoading && detalhesTitulo[0] as item" class="pago-stamp">
+      <img *ngIf="item.dtbaixa" src="assets/img/pagos.jpg" alt="Pago" />
+      <img *ngIf="!item.dtbaixa" src="assets/img/load.gif" alt="Pendente" />
+    </div>
+  </div>
+</po-modal>

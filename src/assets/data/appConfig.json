@@ -1,0 +1,6 @@
+{
+    "name": "bolepix",
+    "version": "1.0.0",
+    "productLine": "Protheus",
+    "api_baseUrl": "http://10.1.1.7:8092/rest"
+}

@@ -1,0 +1,127 @@
+.indicadores-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.indicador {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background-color: #fcfcfc;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  text-align: center;
+}
+.indicador2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background-color: #fcfcfc;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  text-align: center;
+}
+.indicador-valor {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.indicador-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.container {
+  border: 1px solid #0374df;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fafafa;
+  margin-bottom: 10px;
+}
+.refresh {
+  float: right;
+  margin-bottom: 10px;
+  padding: 8px;
+
+}
+.visualizar {
+  float: right;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+.opcoes {
+  margin-bottom: 10px;
+}
+.motorista {
+  margin-bottom: 10px;
+}
+
+.rodape-fixo {
+  /* position: fixed; */
+  bottom: 0; 
+  left: 0;
+  width: 100%;
+  background-color: #ffffff; /* Cor de fundo para destaque */
+  color: rgba(1, 250, 13, 0.705);
+  padding: 7px 20px;
+  box-shadow: 0 -2px 5px rgb(14 91 185 / 72%);
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  align-items: center;
+  z-index: 100; /* Garante que fique acima de outros elementos */
+}
+
+.indicador-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.indicador-footer .indicador-label {
+  color: #000000; /* Cor mais suave para o label */
+  font-size: 19px;
+}
+.po-page-content {
+    min-height: auto !important;
+    height: auto !important;
+    padding-bottom: 0 !important;
+    max-height: 95% !important;;
+    }
+.modal-content-wrapper {
+  position: relative;
+  min-height: 150px; /* Garante um espaço mínimo */
+}
+
+.pago-stamp {
+  position: absolute;
+  bottom: 70px;
+  right: 70px;
+  z-index: 10;
+}
+
+.pago-stamp img {
+  width: 200px;  /* Ajuste o tamanho conforme necessário */
+  height: auto;
+  opacity: 0.8; /* Opcional: efeito de carimbo levemente transparente */
+  transform: rotate(-1deg); /* Opcional: inclinação estilo carimbo */
+}
+.po-modal-lg {
+    width: 80%;
+}
+.buscar {
+  margin-top: 32px;
+}

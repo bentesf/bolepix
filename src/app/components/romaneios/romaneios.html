@@ -1,0 +1,100 @@
+<div class="po-row">
+<!-- Data Inicio -->
+    <po-datepicker 
+        class="po-md-2"
+        name="dataInicio"
+        p-label="Data Início"
+        [(ngModel)]="dataInicio"
+        (p-change)="onDataInicioChange($event)">
+    </po-datepicker>
+
+<!-- Data Final -->
+    <po-datepicker class="po-md-2"
+        name="dataFim"
+        p-label="Data Fim"
+        [(ngModel)]="dataFim"
+        (p-change)="onDataFimChange($event)">
+    </po-datepicker>
+</div>
+
+<div class="indicadores-container">
+  <div class="indicador">
+    <span class="indicador-valor">{{ total }}</span>
+    <span class="indicador-label">Total de Cargas</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-valor">{{ registrar }}</span>
+    <span class="indicador-label">A Transmitir</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-valor">{{ pendente }}</span>
+    <span class="indicador-label">No Aguardo</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-valor">{{ enviado }}</span>
+    <span class="indicador-label">Transmitido</span>
+  </div>
+</div>
+
+<hr>
+<po-button
+    class="atualizar"
+    p-label="Atualizar"
+    p-kind="secondary"
+    (p-click)="atualizarCarga()"
+    p-icon="po-icon-refresh">
+</po-button>
+<po-button
+    class="transmitir"
+    p-label="Transmitir"
+    p-kind="secondary"
+    (p-click)="transmitirCarga()"
+    p-icon="po-icon-refresh">
+</po-button>
+<po-button
+    class="visualizar"
+    p-label="Visualizar"
+    p-kind="secondary"
+    (p-click)="visualisarCarga()"
+    p-icon="an an-refresh">
+</po-button>
+<!-- <po-button
+    class="imprimir"
+    p-label="Imprimir"
+    p-kind="secondary"
+    (p-click)="imprimirCarga()"
+    p-icon="po-icon-refresh">
+</po-button> -->
+
+<!-- </div> -->
+<div class="container">
+    <po-table
+    [p-columns]="columns"
+    [p-items]="cargas"
+    p-striped="true"
+    p-sort="true"
+    [p-selectable]="true"
+    [p-hide-columns-manager]="true"
+    [p-hide-table-search]="false"
+    (p-selected)="atualizarIndicadoresFooter()"
+    (p-unselected)="atualizarIndicadoresFooter()"
+    >
+    </po-table>
+</div>
+
+<po-modal #modalViewCarga p-title="Pedidos do Carregamento" class="rastreio-iframe">
+  <po-button
+    class="imprimir"
+    p-label="Imprimir"
+    p-kind="secondary"
+    (p-click)="imprimirCarga()"
+    p-icon="po-icon-refresh">
+  </po-button>
+  <po-table
+    [p-columns]="columnsModal"
+    [p-items]="pedidosCarga"
+    p-striped="true"
+    [p-hide-columns-manager]="true"
+  >
+  </po-table>
+</po-modal>
