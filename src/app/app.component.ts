@@ -17,7 +17,7 @@ import { ProAppConfigService } from "@totvs/protheus-lib-core";
     RouterOutlet,
     PoButtonModule,
 
-],
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
@@ -25,24 +25,24 @@ export class AppComponent {
 
   //Ao carregar a página
   constructor(private proAppConfigService: ProAppConfigService, private router: Router) {
-    if (! this.proAppConfigService.insideProtheus()) {
+    if (!this.proAppConfigService.insideProtheus()) {
       this.proAppConfigService.loadAppConfig();
       sessionStorage.setItem("insideProtheus", "0");
-      sessionStorage.setItem("ERPTOKEN", '{"access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBKd3RQdWJsaWNLZXlGb3IyNTYifQ.eyJpc3MiOiJUT1RWUy1BRFZQTC1GV0pXVCIsInN1YiI6IkZlbGlwZSIsImlhdCI6MTc4MTExOTMzMywidXNlcmlkIjoiMDAwMzk3IiwiZXhwIjoxNzgxMTIyOTMzLCJlbnZJZCI6IlRPUFAxMiJ9.dtI6mGolsH5XKpN1oh_-xN168YuSmul3twAV9SeKIsFzAz3yjtzae47BLdHc0Pj_pAVa9ucZYPzs6JLotTYgoR8n5_hHoL7rc1e4S5tU64n132PuCOfSs_YwX8TCss1RJg53d11UF6e4Uf2kR4M5wFNftzS7Ib-_iPYAcb0tXsXJIylkSCTHS8XJP9_zuwIpykwwVX-vUFMq2QqZGcleKJEYDZwpGeM8mDKA7Nh5GdUHjM20KBwKZa1mSrz2SpWCw04xwhNvCLq6HVeV2gDyB2Cyf57oE1uDOVWwpXIogGSBTdSia6DFsSeTAYwdUPc8CkoTFXMZ6OEkexYMl5u-1g","refresh_token": "DFMoDHcXaDdwmgR1pRCdiIjX.E2odS1sbYyxijTtq21ed6ZXFodgtXmh-h3YZi4QNtos1mxZEdJcXUTIBItRiBrSCvl0NQ69rLam425WNDBvWllJtELAWnCnBI1-b8eZd7VgBoedlsuYhUmvNMQHOIURQgQGEG-mciblyp7NC-qlier_dUe4Nwge1JoqoD43tPkQ57fbQPCPCg8xX.bL3jLi6ouQkVqDH3497ZM-t_cqLX8lxZnJ9u9Ci6-PV65NlF78R7DXdo5KTyAO_cQ7xU3mKHNfu-YVyU2emU45SAMOZ0901Ch2ctx7i5dn22JnqonGvGo-wu-0cNAQG1EWqFvyqAvmoMDznP1ori4NrNdBUBx_pekLnjXDtTKqgAaZqLnAgvZEGrxY4gLni0EkA8tk_Rw1CVifw2XuUCPUhRrJ3a5aMl60ENTJU08B-9eqPTgUwyDfiZ_okSK_RWwE1VgJdJ9rIIghTmj6Nfw6l0yN2YKEQ4LIvmbKGIYe8ehtopTR_G5k8OnkSJ7tRH4LIXJIjpXd4yLO0M3bpBRw","scope": "default","token_type": "Bearer","expires_in": 3600, "hasMFA": false}');
+      sessionStorage.setItem("ERPTOKEN", '{"access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBKd3RQdWJsaWNLZXlGb3IyNTYifQ.eyJpc3MiOiJUT1RWUy1BRFZQTC1GV0pXVCIsInN1YiI6IkZlbGlwZSIsImlhdCI6MTc4Mzk2NDIyMCwidXNlcmlkIjoiMDAwMzk3IiwiZXhwIjoxNzgzOTY3ODIwLCJlbnZJZCI6IlRPUFAxMiJ9.IGWvgdGJXEqqIBgefsXmHd0uP_5jqiopU0Vf2Nv5khBjlj_7DfpUBeUyo7IOsNe5Um5YB3lgKy9UV5W0hmSqrFMvmw_9xGELw8l_9O1_SU9Dk-yb8m8wKP_BnOiZDk9XK69r0mq3IOJgJ2HQ93xfVPS9eBldlGCpFq-o9rEh8IihGYckqUe2y2wT4ayzFHvdepKWlcxYMZGQh7NFwce0ZvoB8QQftkCZVGNTcp-JCEilAwe-C3pMD3JxIx4CHs9Pvfvamm8Jd36GMOwhFCQzhSuZoGGY7gEvHt2csWJWtAB-a0aTQ-KLGNUPDWM7GuYBTcQH56MYWfmLrteCQ7NKRA","refresh_token": "DFMoDHQHYHFzij52pSadiIjX.E2odS1sbYyxijTtq21ed6ZXFodgtXmh-h3cZi4gNtos1mwZqeZcHXTICHNwoBrSCvl0NQ69rLai425mNDBvWllJLE7AGkCnCHVfR8eZd7VgBoedlsuYhUmvNMQHOIURQgQGEG-mciblyp7NC-qlier_dUe4Nwge1JoqoD43tPkQ57fbQPCPCg8xX.Dv3oDZ_Cca73lmaEwVAhY8VeGqf9UOQrkLy0ufdayOHh0Re9HPt6tiGrhjStQ0O5zekmaD4eaKVNKDtacbloTj0YbnYEtDv0GdfsMN0MQ_c7nQ9Vms8_RfMI_sSZ-dMdxZWTLhS9q14w8wnSmdiN7kJKDMPhTfxiscnKpbDqVLv8QIk0Kk2u6yckoem2Ml7pWWTHrZazpFRf0P7oxb4D58XdhHSOKZ7-C-Gd7-wwQ22h5rKdJDiAbIt8U-_Av777pcZpd4HjhBv6saqYU-6MIFYdemdF0ocUcCNCbaoPJXZoaD3mgfzLmhBAsEFeZRXA6Fz0Ajf3mVqGe_RXsJsHjg","scope": "default","token_type": "Bearer","expires_in": 3600, "hasMFA": false}');
     }
     else {
       sessionStorage.setItem("insideProtheus", "1");
     }
-    
-  }  
-  
+
+  }
+
   // As opções
   readonly menus: Array<PoMenuItem> = [
-    { label: 'Romaneio' , action: this.cargasCk.bind(this) , icon: 'an-fill an-files', shortLabel: 'Romaneios'},
-    { label: 'Imprimir Boleto'  , action: this.boletoCk.bind(this) , icon: 'an-fill an an-printer', shortLabel: 'Imprimir Boletos' },
-    { label: 'Monitor/Operacões'  , action: this.monitorCk.bind(this), icon: 'an-fill an-monitor-arrow-up', shortLabel: 'Monitor' },
-    { label: 'Titulos'  , action: this.tituloCk.bind(this), icon: 'an-fill an-fill an-currency-dollar', shortLabel: 'Titulos' },
-    { label: 'Sair'     , action: this.closeApp.bind(this) , icon: 'an-fill an-door-open', shortLabel: 'Sair' }
+    { label: 'Romaneio', action: this.cargasCk.bind(this), icon: 'an-fill an-files', shortLabel: 'Romaneios' },
+    { label: 'Imprimir Boleto', action: this.boletoCk.bind(this), icon: 'an-fill an an-printer', shortLabel: 'Imprimir Boletos' },
+    { label: 'Monitor/Operacões', action: this.monitorCk.bind(this), icon: 'an-fill an-monitor-arrow-up', shortLabel: 'Monitor' },
+    { label: 'Titulos', action: this.tituloCk.bind(this), icon: 'an-fill an-fill an-currency-dollar', shortLabel: 'Titulos' },
+    { label: 'Sair', action: this.closeApp.bind(this), icon: 'an-fill an-door-open', shortLabel: 'Sair' }
   ];
 
   //Pedidos

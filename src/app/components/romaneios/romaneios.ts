@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { forkJoin } from 'rxjs';
+import { DateFilterService } from '../../services/date-filter.service';
 
 @Component(
   {
@@ -23,8 +24,19 @@ export class Romaneios implements OnInit {
   cargaSelecionada: Cargas[] = [];
   pedidosCarga: Pedidos[] = [];
   loading: boolean = false;
-  dataInicio: string = '';
-  dataFim: string = '';
+  get dataInicio(): string {
+    return this.dateFilterService.dataInicio;
+  }
+  set dataInicio(value: string) {
+    this.dateFilterService.dataInicio = value;
+  }
+
+  get dataFim(): string {
+    return this.dateFilterService.dataFim;
+  }
+  set dataFim(value: string) {
+    this.dateFilterService.dataFim = value;
+  }
   parcial: number = 0;
   registrar: number = 0;
   enviado: number = 0;
@@ -83,10 +95,12 @@ export class Romaneios implements OnInit {
     private protheusService: ProtheusService,
     private poNotification: PoNotificationService,
     private poDialog: PoDialogService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private dateFilterService: DateFilterService
   ) { }
 
   ngOnInit(): void {
+    this.loadCargas();
   }
 
   atualizarCarga(){

@@ -4,6 +4,7 @@ import { Bordero,ProtheusService } from '../../../assets/data/protheus.service';
 import { CommonModule,DecimalPipe } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { DateFilterService } from '../../services/date-filter.service';
 
 @Component({
   selector: 'app-boletos',
@@ -21,8 +22,19 @@ export class Boletos implements OnInit {
   loading: boolean = false;
   totalBorderoSelecionadosFooter: number = 0;
   totalBoletosSelecionadoFooter: number = 0;
-  dataInicio: string = '';
-  dataFim1: string = '';
+  get dataInicio(): string {
+    return this.dateFilterService.dataInicio;
+  }
+  set dataInicio(value: string) {
+    this.dateFilterService.dataInicio = value;
+  }
+
+  get dataFim1(): string {
+    return this.dateFilterService.dataFim;
+  }
+  set dataFim1(value: string) {
+    this.dateFilterService.dataFim = value;
+  }
   docSerie: string = '';
 //paginacao
   page: number = 1;
@@ -44,11 +56,12 @@ export class Boletos implements OnInit {
     private protheusService: ProtheusService,
     private poNotification: PoNotificationService,
     private poDialog: PoDialogService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dateFilterService: DateFilterService
   ) { }
 
   ngOnInit(): void {
-    // this.loadPedidos();
+    this.loadBordero();
   }
 
   atualizarBordero(): void {
