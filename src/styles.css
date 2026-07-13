@@ -16,3 +16,16 @@
     .po-modal-md {
     width: 70%;
 }
+
+.botoes-sticky {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 99;
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 15px;
+}

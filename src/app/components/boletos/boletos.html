@@ -41,23 +41,22 @@
   </div>
 </div>
 
-<hr>
-<!-- <div class="botoes"> -->
-<po-button
-    class="refresh"
-    p-label="Atualizar"
-    p-kind="secondary"
-    (p-click)="onBuscarDoc()"
-    >
-</po-button>
-<po-button
-    class="refresh"
-    p-label="Imprimir"
-    p-kind="secondary"
-    (p-click)="imprimirBor()"
-    >
-</po-button>
-<!-- </div> -->
+<div class="botoes-sticky">
+  <po-button
+      class="refresh"
+      p-label="Atualizar"
+      p-kind="secondary"
+      (p-click)="onBuscarDoc()"
+      >
+  </po-button>
+  <po-button
+      class="refresh"
+      p-label="Imprimir"
+      p-kind="secondary"
+      (p-click)="imprimirBor()"
+      >
+  </po-button>
+</div>
 <div class="container">
     <po-table
     [p-columns]="columns"

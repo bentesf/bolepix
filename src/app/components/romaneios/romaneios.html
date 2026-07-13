@@ -40,31 +40,32 @@
   </div>
 </div>
 
-<hr>
-<po-button
-    class="atualizar"
-    p-label="Atualizar"
-    p-kind="secondary"
-    (p-click)="atualizarCarga()"
-    p-icon="po-icon-refresh"
-    [p-loading]="loading">
-</po-button>
-<po-button
-    class="transmitir"
-    p-label="Transmitir"
-    p-kind="secondary"
-    (p-click)="transmitirCarga()"
-    p-icon="po-icon-refresh"
-    [p-loading]="loading">
-</po-button>
-<po-button
-    class="visualizar"
-    p-label="Visualizar"
-    p-kind="secondary"
-    (p-click)="visualisarCarga()"
-    p-icon="an an-refresh"
-    [p-loading]="loading">
-</po-button>
+<div class="botoes-sticky">
+  <po-button
+      class="atualizar"
+      p-label="Atualizar"
+      p-kind="secondary"
+      (p-click)="atualizarCarga()"
+      p-icon="po-icon-refresh"
+      [p-loading]="loading">
+  </po-button>
+  <po-button
+      class="transmitir"
+      p-label="Transmitir"
+      p-kind="secondary"
+      (p-click)="transmitirCarga()"
+      p-icon="po-icon-refresh"
+      [p-loading]="loading">
+  </po-button>
+  <po-button
+      class="visualizar"
+      p-label="Visualizar"
+      p-kind="secondary"
+      (p-click)="visualisarCarga()"
+      p-icon="an an-refresh"
+      [p-loading]="loading">
+  </po-button>
+</div>
 <!-- <po-button
     class="imprimir"
     p-label="Imprimir"
