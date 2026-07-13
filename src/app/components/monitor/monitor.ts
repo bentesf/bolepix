@@ -4,6 +4,7 @@ import { Pendencia, ProtheusService, Detalhe } from '../../../assets/data/prothe
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { DateFilterService } from '../../services/date-filter.service';
 
 @Component({
   selector: 'app-monitor',
@@ -23,8 +24,19 @@ export class Monitor implements OnInit {
   total: number = 0;
   cancela: number = 0;
   altera: number = 0;
-  dataInicio: string = '';
-  dataFim2: string = '';
+  get dataInicio(): string {
+    return this.dateFilterService.dataInicio;
+  }
+  set dataInicio(value: string) {
+    this.dateFilterService.dataInicio = value;
+  }
+
+  get dataFim2(): string {
+    return this.dateFilterService.dataFim;
+  }
+  set dataFim2(value: string) {
+    this.dateFilterService.dataFim = value;
+  }
   docSerie: string = '';
   selectedOperacao: string ='';
 //paginacao
@@ -79,10 +91,12 @@ export class Monitor implements OnInit {
     private protheusService: ProtheusService,
     private poNotification: PoNotificationService,
     private poDialog: PoDialogService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private dateFilterService: DateFilterService
   ) { }
 
   ngOnInit(): void {
+    this.loadMonitor();
   }
 
 
