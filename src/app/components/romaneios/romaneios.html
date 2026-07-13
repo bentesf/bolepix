@@ -34,6 +34,10 @@
     <span class="indicador-valor">{{ enviado }}</span>
     <span class="indicador-label">Transmitido</span>
   </div>
+  <div class="indicador">
+    <span class="indicador-valor">{{ parcial }}</span>
+    <span class="indicador-label">Parcial</span>
+  </div>
 </div>
 
 <hr>
@@ -42,21 +46,24 @@
     p-label="Atualizar"
     p-kind="secondary"
     (p-click)="atualizarCarga()"
-    p-icon="po-icon-refresh">
+    p-icon="po-icon-refresh"
+    [p-loading]="loading">
 </po-button>
 <po-button
     class="transmitir"
     p-label="Transmitir"
     p-kind="secondary"
     (p-click)="transmitirCarga()"
-    p-icon="po-icon-refresh">
+    p-icon="po-icon-refresh"
+    [p-loading]="loading">
 </po-button>
 <po-button
     class="visualizar"
     p-label="Visualizar"
     p-kind="secondary"
     (p-click)="visualisarCarga()"
-    p-icon="an an-refresh">
+    p-icon="an an-refresh"
+    [p-loading]="loading">
 </po-button>
 <!-- <po-button
     class="imprimir"
@@ -78,6 +85,7 @@
     [p-hide-table-search]="false"
     (p-selected)="atualizarIndicadoresFooter()"
     (p-unselected)="atualizarIndicadoresFooter()"
+    [p-loading]="loading"
     >
     </po-table>
 </div>

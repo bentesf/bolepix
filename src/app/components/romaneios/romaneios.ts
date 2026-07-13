@@ -25,6 +25,7 @@ export class Romaneios implements OnInit {
   loading: boolean = false;
   dataInicio: string = '';
   dataFim: string = '';
+  parcial: number = 0;
   registrar: number = 0;
   enviado: number = 0;
   pendente: number = 0;
@@ -32,13 +33,19 @@ export class Romaneios implements OnInit {
   urlRastreio: SafeResourceUrl = '';
 
   readonly columns: PoTableColumn[] = [
-    { property: 'transm'  , label: 'Transmissão', type: 'subtitle', width: '5%', subtitles: [
-      { value: 'M', color: 'color-02', label: 'Parcial', content: '' },
-      { value: 'P', color: 'color-03', label: 'Pendente', content: '' },
-      { value: 'N', color: 'color-03', label: 'Processando', content: '' },
-      { value: 'S', color: 'color-10', label: 'Transmitido', content: '' },
-      { value: 'F', color: 'color-07', label: 'Falha na Transmissao', content: '' }      ]},
-    { property: 'filial'   , label: 'Filial'     },
+    {
+      property: 'transm',
+      label: 'Transmissão',
+      type: 'label', // Garante que a coluna renderize como uma Tag
+      labels: [
+        { value: 'M', label: 'Parcial'    , color: 'color-09', tooltip: 'Com alteração ou Cancelamento' },
+        { value: 'P', label: 'Pendente'   , color: 'color-03', tooltip: 'Pendente S/ Bordero'           },
+        { value: 'N', label: 'Processando', color: 'color-02', tooltip: 'Pendente C/ Bordero'           },
+        { value: 'S', label: 'Transmitido', color: 'color-10', tooltip: 'Transmissão Completa'          },
+        { value: 'F', label: 'Falha'      , color: 'color-07', tooltip: 'Transmissão com Falha'         },
+      ]
+    },
+    { property: 'filial'   , label: 'Filial'    },
     { property: 'carga'    , label: 'Carga'     },
     { property: 'destino'  , label: 'Destino'   },
     { property: 'motora'   , label: 'Motorista' },
@@ -49,6 +56,19 @@ export class Romaneios implements OnInit {
   ];
     readonly columnsModal: PoTableColumn[] = [
     { property: 'sequencial', label: 'Seq.', width: '5%' },
+    {
+      property: 'status',
+      label: 'Status',
+      type: 'label', // Garante que a coluna renderize como uma Tag
+      labels: [
+        { value: 'P', label: 'Pendente'   , color: 'color-03', tooltip: 'Pendente S/ Bordero'           },
+        { value: 'N', label: 'Processando', color: 'color-02', tooltip: 'Aguardando envio para o Banco'           },
+        { value: 'S', label: 'Transmitido', color: 'color-10', tooltip: 'Transmissão Completa'          },
+        { value: 'C', label: 'Cancelado'  , color: 'color-07', tooltip: 'Cancelado pelo Financeiro'         },
+        { value: 'F', label: 'Falha'      , color: 'color-07', tooltip: 'Transmissão com Falha'         },
+      ]
+    },
+    { property: 'ea_numbor' , label: 'Bordero'},
     { property: 'pedido'    , label: 'Pedido' },
     { property: 'cliente'   , label: 'Cliente'},
     { property: 'nome'      , label: 'Nome Cliente', width: '30%' },
@@ -56,7 +76,6 @@ export class Romaneios implements OnInit {
     { property: 'ea_num'    , label: 'Titulo' },
     { property: 'ea_prefixo', label: 'Serie'  },
     { property: 'ea_tipo'   , label: 'Tipo'   },
-    { property: 'ea_numbor' , label: 'Bordero'},
     
   ];
 
@@ -209,13 +228,16 @@ export class Romaneios implements OnInit {
       title: 'Confirmar',
       message: `Deseja solicitar a criação de Borderô e Transmissão para a(s) carga(s): ${codigosCargas}?`,
       confirm: () => {
+        this.loading = true;
         this.protheusService.solTransmis({ carga: codigosCargas }).subscribe({
           next: () => {
             this.poNotification.success('Transmissão solicitada com sucesso!');
+            this.loading = false;
           },
           error: (err) => {
             this.poNotification.error('Erro ao solicitar Transmissão. Verifique o log para mais detalhes.');
             console.error('Erro ao solicitar entrega:', err);
+            this.loading = false;
           }
         });
       }
@@ -244,6 +266,7 @@ export class Romaneios implements OnInit {
     this.enviado = this.cargas.filter(p => p.transm === 'S').length;
     this.registrar = this.cargas.filter(p => p.transm === 'P').length;
     this.pendente = this.cargas.filter(p => p.transm == 'N').length;
+    this.parcial = this.cargas.filter(p => p.transm == 'M').length;
   }
 
 }
