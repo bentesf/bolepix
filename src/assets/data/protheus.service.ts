@@ -53,7 +53,8 @@ export interface Pedidos {
   ea_numbor : string;
   pedido    : string;
   cliente   : string;
-  nome      : string
+  nome      : string;
+  status    : string
 }
 
 export interface Detalhe {

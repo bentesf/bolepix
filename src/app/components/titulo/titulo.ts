@@ -102,13 +102,17 @@ geraBorde(): void {
       title: 'Confirmar',
       message: `Deseja solicitar a criação de Borderô e Transmissão para o(s) Titulo(s) selecionados?`,
       confirm: () => {
+        this.loading = true;
         this.protheusService.solBorder({ carga: codigosCargas }).subscribe({
           next: () => {
             this.poNotification.success('Transmissão solicitada com sucesso!');
+            this.loading = false;
           },
           error: (err) => {
             this.poNotification.error('Erro ao solicitar Transmissão. Verifique o log para mais detalhes.');
             console.error('Erro ao solicitar entrega:', err);
+            this.loading = false;
+
           }
         });
       }

@@ -38,6 +38,7 @@
     p-label="Atualizar"
     p-kind="secondary"
     (p-click)="onBuscarDoc()"
+    [p-loading]="loading"
     >
 </po-button>
 <po-button
@@ -45,6 +46,7 @@
     p-label="Trasmitir"
     p-kind="secondary"
     (p-click)="geraBorde()"
+    [p-loading]="loading"
     >
 </po-button>
 <!-- </div> -->
